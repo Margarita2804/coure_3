@@ -1,4 +1,3 @@
-from config import FILE_PATH
 import json
 from datetime import datetime
 
@@ -34,3 +33,20 @@ def transaction_convert_check(data_check):
         format_check = ' '.join([check[x:x+4]for x in range(0, 16, 4)])
         final_check = f"{name_check} {format_check}"
         return final_check
+
+
+def final_transaction(data):
+    date_transaction = date_conversion(data["date"])
+    description = data["description"]
+    if data.get("from"):
+        from_transaction = transaction_convert_check(data["from"])
+        to_transaction = transaction_convert_check(data["to"])
+        from_to = f"{from_transaction} -> {to_transaction}"
+    else:
+        to_transaction = transaction_convert_check(data["to"])
+        from_to = f"Неизвестный отправитель -> {to_transaction}"
+    operation_amount = f'{data["operationAmount"]["amount"]} {data["operationAmount"]["currency"]["name"]}'
+    finish_data = (f"\n{date_transaction} {description}\n"
+                   f"{from_to}\n"
+                   f"{operation_amount}")
+    return finish_data

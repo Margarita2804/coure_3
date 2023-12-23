@@ -57,4 +57,3 @@ def list_transaction(data_json):
     for item in data_json:
         list_final_data.append(final_transaction(item))
     return list_final_data
-

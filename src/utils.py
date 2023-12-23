@@ -3,11 +3,13 @@ from datetime import datetime
 
 
 def load_data(file_path):
+    """функция загружает json файл"""
     with open(file_path, encoding="utf-8") as file:
         return json.load(file)
 
 
 def sorted_data(data):
+    """функция сортирует файлы json"""
     executed_list = []
     for item in data:
         if item.get("state") == "EXECUTED":
@@ -17,11 +19,13 @@ def sorted_data(data):
 
 
 def date_conversion(data_time):
+    """функция конвертирует дату"""
     convert_date = datetime.fromisoformat(data_time).strftime("%d.%m.%Y")
     return convert_date
 
 
 def transaction_convert_check(data_check):
+    """функция формирует правильный номер"""
     data = data_check.split(' ')
     numbers_check = data[-1]
     name_check = ' '.join(data[:-1])
@@ -36,6 +40,7 @@ def transaction_convert_check(data_check):
 
 
 def final_transaction(data):
+    """функция формирует финальную информацию о транзакции"""
     date_transaction = date_conversion(data["date"])
     description = data["description"]
     if data.get("from"):
@@ -53,6 +58,7 @@ def final_transaction(data):
 
 
 def list_transaction(data_json):
+    """функция возвращает финальный список транзакций"""
     list_final_data = []
     for item in data_json:
         list_final_data.append(final_transaction(item))

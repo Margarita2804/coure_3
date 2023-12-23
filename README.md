@@ -8,6 +8,7 @@
   + tests/data/ - папка с тестовыми json файлами
   + config.py - пути до файлов
   + .gitignore - файл игнор
+  + requirements.txt - зависимости проекта
   + README.md - описание проекта
 
 ### Описание функций файла utils.py

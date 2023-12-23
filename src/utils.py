@@ -50,3 +50,11 @@ def final_transaction(data):
                    f"{from_to}\n"
                    f"{operation_amount}")
     return finish_data
+
+
+def list_transaction(data_json):
+    list_final_data = []
+    for item in data_json:
+        list_final_data.append(final_transaction(item))
+    return list_final_data
+
